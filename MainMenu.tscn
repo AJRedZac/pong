@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5as47pcxup15"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.cs" id="1_ivfjn"]
+[ext_resource type="FontFile" uid="uid://btp2r4fngv6e3" path="res://Font/Retro Gaming.ttf" id="1_k22k8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bmlc"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rcvo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wr23c"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxvxg"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_iedim"]
+Button/colors/font_color = Color(0.609331, 0.60933, 0.60933, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.808997, 0.808999, 0.808999, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_k22k8")
+Button/styles/focus = SubResource("StyleBoxFlat_8bmlc")
+Button/styles/hover = SubResource("StyleBoxFlat_6rcvo")
+Button/styles/normal = SubResource("StyleBoxFlat_wr23c")
+Button/styles/pressed = SubResource("StyleBoxFlat_yxvxg")
+Label/font_sizes/font_size = 50
+Label/fonts/font = ExtResource("1_k22k8")
+
+[node name="Node" type="Node"]
+
+[node name="Menu2D" type="Node2D" parent="."]
+script = ExtResource("1_ivfjn")
+
+[node name="ColorRect" type="ColorRect" parent="Menu2D"]
+layout_direction = 1
+offset_right = 1920.0
+offset_bottom = 1535.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu2D"]
+offset_left = 816.0
+offset_top = 767.0
+offset_right = 1105.0
+offset_bottom = 899.0
+theme = SubResource("Theme_iedim")
+
+[node name="NewGameButton" type="Button" parent="Menu2D/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="QuitButton" type="Button" parent="Menu2D/VBoxContainer"]
+layout_mode = 2
+text = "Exit
+"

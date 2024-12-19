@@ -1,0 +1,179 @@
+[gd_scene load_steps=22 format=3 uid="uid://bmuyqpq32ms5m"]
+
+[ext_resource type="Script" path="res://Scripts/MainScript.cs" id="1_iqtl7"]
+[ext_resource type="Script" path="res://Scripts/Parent.cs" id="1_mwv7c"]
+[ext_resource type="Texture2D" uid="uid://chxsjt3tsbk0g" path="res://dotted_line.png" id="1_nlkmr"]
+[ext_resource type="PackedScene" uid="uid://rtt8y5l6v3t6" path="res://bola.tscn" id="2_orbl2"]
+[ext_resource type="PackedScene" uid="uid://ciswnmabmlwct" path="res://paleta.tscn" id="2_rght5"]
+[ext_resource type="Script" path="res://Scripts/PaletaP2.cs" id="3_0mp42"]
+[ext_resource type="Theme" uid="uid://37mfybbw2juc" path="res://pongTheme.tres" id="7_ac70c"]
+[ext_resource type="AudioStream" uid="uid://c5yj4mngina58" path="res://Sounds/beep.wav" id="7_leu1g"]
+[ext_resource type="Script" path="res://Scripts/AudioStreamPlayer.cs" id="8_c1rdg"]
+[ext_resource type="Script" path="res://Scripts/ScoreAudioPlayer.cs" id="9_4rswc"]
+[ext_resource type="AudioStream" uid="uid://cbrih2v062r4u" path="res://Sounds/241132__xtrgamr__shortapplause_01.wav" id="9_y4cfh"]
+[ext_resource type="Script" path="res://Scripts/PauseMenu.cs" id="11_pnh56"]
+[ext_resource type="FontFile" uid="uid://btp2r4fngv6e3" path="res://Font/Retro Gaming.ttf" id="12_brpie"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13god"]
+size = Vector2(1920, 50)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_br582"]
+
+[sub_resource type="Theme" id="Theme_loqun"]
+Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("12_brpie")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tdtb"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hsj72"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxt17"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6jx2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_cabe7"]
+Button/colors/font_color = Color(0.609331, 0.60933, 0.60933, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.808997, 0.808999, 0.808999, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("12_brpie")
+Button/styles/focus = SubResource("StyleBoxFlat_0tdtb")
+Button/styles/hover = SubResource("StyleBoxFlat_hsj72")
+Button/styles/normal = SubResource("StyleBoxFlat_dxt17")
+Button/styles/pressed = SubResource("StyleBoxFlat_t6jx2")
+Label/font_sizes/font_size = 50
+Label/fonts/font = ExtResource("12_brpie")
+
+[node name="Node" type="Node"]
+process_mode = 3
+script = ExtResource("1_mwv7c")
+
+[node name="Arena2D" type="Node2D" parent="."]
+process_mode = 1
+script = ExtResource("1_iqtl7")
+BolaScene = ExtResource("2_orbl2")
+
+[node name="ColorRect" type="ColorRect" parent="Arena2D"]
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1535.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="NorthWall" type="StaticBody2D" parent="Arena2D"]
+position = Vector2(960, 125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena2D/NorthWall"]
+shape = SubResource("RectangleShape2D_13god")
+
+[node name="Line2D" type="Line2D" parent="Arena2D/NorthWall"]
+position = Vector2(0, 17)
+points = PackedVector2Array(910, 0, -910, 0)
+texture = SubResource("CanvasTexture_br582")
+texture_mode = 2
+
+[node name="SouthWall" type="StaticBody2D" parent="Arena2D"]
+position = Vector2(960, 1510)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena2D/SouthWall"]
+shape = SubResource("RectangleShape2D_13god")
+
+[node name="Line2D" type="Line2D" parent="Arena2D/SouthWall"]
+position = Vector2(0, -17)
+points = PackedVector2Array(910, 0, -910, 0)
+texture = SubResource("CanvasTexture_br582")
+texture_mode = 2
+
+[node name="DividingLine" type="Line2D" parent="Arena2D"]
+texture_repeat = 2
+points = PackedVector2Array(960, 150, 960, 1485)
+width = 20.0
+texture = ExtResource("1_nlkmr")
+texture_mode = 1
+
+[node name="Node2D" type="Node2D" parent="Arena2D"]
+
+[node name="Paleta" parent="Arena2D" instance=ExtResource("2_rght5")]
+
+[node name="Paleta2" parent="Arena2D" instance=ExtResource("2_rght5")]
+position = Vector2(1870, 867)
+script = ExtResource("3_0mp42")
+
+[node name="P1Score" type="Label" parent="Arena2D"]
+offset_left = 822.0
+offset_right = 915.0
+offset_bottom = 153.0
+theme = ExtResource("7_ac70c")
+text = "999"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="P2Score" type="Label" parent="Arena2D"]
+offset_left = 1005.0
+offset_right = 1098.0
+offset_bottom = 153.0
+theme = ExtResource("7_ac70c")
+text = "999
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Arena2D"]
+stream = ExtResource("7_leu1g")
+script = ExtResource("8_c1rdg")
+
+[node name="ScoreAudioPlayer" type="AudioStreamPlayer" parent="Arena2D"]
+stream = ExtResource("9_y4cfh")
+script = ExtResource("9_4rswc")
+
+[node name="Menu2D" type="Node2D" parent="."]
+process_mode = 2
+visible = false
+script = ExtResource("11_pnh56")
+
+[node name="ColorRect" type="ColorRect" parent="Menu2D"]
+layout_direction = 1
+offset_right = 1920.0
+offset_bottom = 1535.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Menu2D"]
+offset_left = 728.0
+offset_top = 511.0
+offset_right = 1192.0
+offset_bottom = 639.0
+theme = SubResource("Theme_loqun")
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu2D"]
+offset_left = 816.0
+offset_top = 767.0
+offset_right = 1105.0
+offset_bottom = 899.0
+theme = SubResource("Theme_cabe7")
+
+[node name="ContinueButton" type="Button" parent="Menu2D/VBoxContainer"]
+layout_mode = 2
+text = "Continue
+"
+
+[node name="NewGameButton" type="Button" parent="Menu2D/VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="QuitButton" type="Button" parent="Menu2D/VBoxContainer"]
+layout_mode = 2
+text = "Exit
+"
