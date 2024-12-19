@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+/data_Pong_windows_x86_64
+/addons
+/data_Pong_windows_x86_32
+*.7z
+*.exe
+*.pck
